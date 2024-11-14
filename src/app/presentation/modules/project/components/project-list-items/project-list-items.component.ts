@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ProjectEntity } from '../../../../../domain/entities/project.entity';
+import { ProjectListItemComponent } from '../project-list-item/project-list-item.component';
 
 @Component({
   selector: 'app-project-list-items',
   standalone: true,
   imports: [
     CommonModule,
+    ProjectListItemComponent,
   ],
   templateUrl : './project-list-items.component.html',
 
@@ -13,11 +16,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class ProjectListItemsComponent {
 
   @Output() onSelectItem = new EventEmitter();
+  @Input() projects! : ProjectEntity[];
 
   constructor() { }
 
 
-  onSelectTable(){
-    this.onSelectItem.emit();
+  onSelectTable(project : ProjectEntity){
+    this.onSelectItem.emit(project);
   }
  }

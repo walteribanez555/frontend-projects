@@ -12,7 +12,7 @@ export class CreateProjectDto {
     const { name } = props;
 
 
-    if(!name) return ['Name is required', undefined];
+    if(!name && name.length == 0) return ['Name is required', undefined];
 
     return [undefined, new CreateProjectDto(name)];
   }

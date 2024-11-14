@@ -14,20 +14,21 @@
       <!--Table head-->
       <thead class="text-xs uppercase text-muted-foreground">
         <tr>
-          <th class="py-3 text-left">Codigo</th>
-          <th class="py-3 text-left">Email</th>
-          <th class="py-3 text-right" >Nombre</th>
+          <th class="py-3 text-left">Id</th>
+          <th class="py-3 text-left">Nombre</th>
+          <th class="py-3 text-left">Creado en</th>
+          <th class="py-3 text-right" >Status</th>
         </tr>
       </thead>
       <!--end Table head-->
       <!--Table body-->
       <tbody>
-        <!-- <tr
-          *ngFor="let doctor of doctors"
-          [doctor]="doctor"
-          doctor-item
-          (click)="onSelectTable(doctor)"
-          class="border-b border-dashed border-border hover:bg-card"></tr> -->
+        <tr
+          *ngFor="let project of projects"
+          [project]="project"
+          project-list-item
+          (click)="onSelectTable(project)"
+          class="border-b border-dashed border-border hover:bg-card"></tr>
       </tbody>
       <!--end::Table body-->
     </table>

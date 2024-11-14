@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
-import {  Component, EventEmitter, Output } from '@angular/core';
+import {  Component, EventEmitter, Input, Output } from '@angular/core';
+import { ProjectEntity } from '../../../../../domain/entities/project.entity';
+import { TypeStatusPipe } from "../../../shared/pipes/type-status.pipe";
 
 @Component({
-  selector: 'app-project-list-item',
+  selector: '[project-list-item]',
   standalone: true,
   imports: [
     CommonModule,
-  ],
+    TypeStatusPipe
+],
   templateUrl : './project-list-item.component.html',
 })
 export class ProjectListItemComponent {
+
+  @Input() project! : ProjectEntity;
 
 
 

@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { CreateProjectDto } from '../../dtos/project/create-project.dto';
 import { ProjectEntity } from '../../entities/project.entity';
 import { ProjectRepository } from '../../repositories/project.repository';
+import { Result } from '../../types/Result.type';
 
 
 export interface CreateProjectUseCase {
-  execute( dto : CreateProjectDto) : Promise<ProjectEntity>;
+  execute( dto : CreateProjectDto) : Promise<Result<ProjectEntity, string>>;
 
 }
 
@@ -15,8 +16,16 @@ export interface CreateProjectUseCase {
 export class CreateProjectService implements CreateProjectUseCase {
 
   constructor( private repository : ProjectRepository) { }
-  async execute(dto: CreateProjectDto): Promise<ProjectEntity> {
-    return this.repository.createProject(dto);
+  async execute(dto: CreateProjectDto): Promise<Result<ProjectEntity, string>> {
+
+    const result = await this.repository.createProject(dto);
+
+    if(!result.isSuccess){
+      return result;
+    }
+
+    return result;
+
   }
 
 }

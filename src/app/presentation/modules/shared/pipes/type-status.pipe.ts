@@ -1,8 +1,9 @@
 import { Pipe, type PipeTransform } from '@angular/core';
 
 export enum TypeStatus{
-  ACTIVE = 1 ,
-  INACTIVE = 2,
+  INIT = 1 ,
+  PROCESS = 2,
+  FINISH = 3,
 }
 
 
@@ -20,10 +21,15 @@ export class TypeStatusPipe implements PipeTransform {
 
 
     switch (value) {
-      case TypeStatus.ACTIVE:
-        return 'Activo';
-      case TypeStatus.INACTIVE :
-        return 'Inactivo';
+      case TypeStatus.INIT:
+        return 'Creado';
+        break;
+      case TypeStatus.PROCESS :
+        return 'Proceso';
+        break;
+      case TypeStatus.FINISH:
+        return 'Finalizado';
+        break;
       default:
         return 'No definido';
     }
