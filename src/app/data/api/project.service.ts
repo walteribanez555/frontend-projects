@@ -1,10 +1,32 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { ProjectRepository } from '../../domain/repositories/project.repository';
+import { CreateProjectDto } from '../../domain/dtos/project/create-project.dto';
+import { ProjectEntity } from '../../domain/entities/project.entity';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class ProjectService extends ProjectRepository {
 
-  constructor() { }
+  private http = inject(HttpClient);
+
+  private url = environment.api_url;
+
+
+
+  override getProjects(): Promise<ProjectEntity[]> {
+    throw new Error('Method not implemented.');
+  }
+  override createProject(projectDto: CreateProjectDto): Promise<ProjectEntity> {
+    throw new Error('Method not implemented.');
+  }
+  override updateProject(project: any): Promise<ProjectEntity> {
+    throw new Error('Method not implemented.');
+  }
+  override deleteProject(id: number): Promise<any> {
+    throw new Error('Method not implemented.');
+  }
 
 }
