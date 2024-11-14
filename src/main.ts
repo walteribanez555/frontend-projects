@@ -6,6 +6,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngxs/store';
 import { environment } from './environments/environment.development';
 import { AppRoutingModule } from './app/presentation/app-routing.module';
+import { ProjectState } from './app/application/states/project/project.state';
+import { ProjectRepository } from './app/domain/repositories/project.repository';
+import { ProjectService } from './app/data/api/project.service';
 
 if (environment.production) {
   enableProdMode();
@@ -23,7 +26,13 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(BrowserModule, AppRoutingModule),
     provideAnimations(),
     provideHttpClient(),
-    provideStore([]),
+    {
+      provide : ProjectRepository,
+      useClass : ProjectService,
+    },
+    provideStore([
+      ProjectState,
+    ]),
 
   ],
 }).catch((err) => console.error(err));
