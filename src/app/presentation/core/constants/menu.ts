@@ -8,9 +8,9 @@ export class Menu {
       separator: true,
       items: [
         {
-          icon: 'assets/icons/figma-ui/user.svg',
+          icon: 'assets/icons/heroicons/outline/document.svg',
           label: 'Proyectos',
-          route: '/projects/list',
+          route: '/project/list',
         },
 
       ],

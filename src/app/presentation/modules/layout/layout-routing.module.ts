@@ -4,13 +4,14 @@ import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
   {
-    path : 'user',
+    path : 'project',
     component: LayoutComponent,
-    // loadChildren : () =>
-    // import('../user/user.module').then( m => m.UserModule)
+    loadChildren : () =>
+      import('../project/project.module').then( m => m.ProjectModule)
+
   },
 
-  { path: '', redirectTo: 'user', pathMatch: 'full' },
+  { path: '', redirectTo: 'project', pathMatch: 'full' },
   { path: '**', redirectTo: 'error/404' },
 ];
 
