@@ -13,8 +13,6 @@ env:
   AWS_REGION : 'us-east-1'
   SOURCE_DIR : './dist/projects'
 
-
-
 jobs:
   build:
     name: Build
@@ -26,14 +24,29 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: ${{ env.SOURCE_DIR }}
 
   deploy:
-    name: deploy
+    name: Deploy
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up Jarvis
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+      - name: Sync to S3
         uses: jakejarvis/s3-sync-action@master
         with:
-            args: --acl public-read --follow-symlinks --delete
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_REGION: ${{ env.AWS_REGION }}
