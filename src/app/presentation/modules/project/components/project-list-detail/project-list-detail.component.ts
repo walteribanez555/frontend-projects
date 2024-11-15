@@ -96,6 +96,11 @@ export class ProjectListDetailComponent implements AfterViewInit {
 
   onSubmit() {
     this.cdr.detectChanges();
+    this.detailListener?.submit(this.projectForm);
+  }
+
+  onDelete() {
+    this.detailListener?.delete(this.project.id);
   }
 
  }

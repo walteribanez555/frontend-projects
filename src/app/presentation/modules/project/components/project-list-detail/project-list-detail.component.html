@@ -3,7 +3,7 @@
 
   <div class="sticky top-0 flex flex-col bg-background  ">
     <div class=" flex  relative flex-row items-center gap-2 py-3 justify-start">
-      <span class="text-lg text-foreground">{{'Agregar Usuario'}}</span>
+      <span class="text-lg text-foreground">{{'Detalles del proyecto'}}</span>
 
       <button (click)="close()" type="button"
         class="absolute cursor-pointer right-0 inline-flex w-fit justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-foreground hover:bg-card sm:mt-0 sm:w-fit">
@@ -44,6 +44,10 @@
   <div class="flex py-2 flex-col gap-2 ">
     <button type="submit" class="bg-primary text-white rounded-md p-2">
       Guardar Cambios
+    </button>
+
+    <button type="button"  (click)="onDelete()" class="bg-red-600 text-white rounded-md p-2">
+      Eliminar Proyecto
     </button>
 
   </div>

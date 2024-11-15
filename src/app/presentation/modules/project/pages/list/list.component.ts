@@ -196,7 +196,7 @@ export class ListComponent  implements OnInit {
     }
 
     this.modalService.open(ModalFormComponent, {
-      title: `Agregar Doctor`,
+      title: `Agregar Proyecto`,
       size: 'sm',
       forms: [addProjectForm],
       data: {},
@@ -240,6 +240,9 @@ export class ListComponent  implements OnInit {
       },
       onResult : ( project ) => {
         notifierDialog.next(0);
+        this.dialogService.ShowSuccess({
+          description: 'Proyecto creado correctamente',
+        })
         this.onShowItem = true;
         this.cdr.detectChanges();
       },
