@@ -1,4 +1,4 @@
-name: S3 CI CD pipeline to upload web page
+name: S3 - Deploy
 run-name: ${{ github.actor }} has triggered the pipeline
 
 on:
@@ -11,7 +11,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_S3_BUCKET : ${{ secrets.AWS_S3_BUCKET }}
   AWS_REGION : 'us-east-1'
-  SOURCE_DIR : './dist/projects/browser'
+  SOURCE_DIR : '/home/runner/work/frontend-projects/frontend-projects/dist/projects'  # Updated path
 
 jobs:
   build:
@@ -24,6 +24,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: List build directory contents
+        run: ls -R ${{ env.SOURCE_DIR }}
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
