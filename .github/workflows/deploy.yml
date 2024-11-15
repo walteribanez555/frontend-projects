@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Angular project
         run: |
-          npm run build -- --prod
+          npm run build
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
