@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-infra:
-    name: utepsa-deployment-ci-cd
+    name: build-deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
